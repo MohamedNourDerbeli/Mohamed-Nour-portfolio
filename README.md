@@ -34,7 +34,7 @@ A modern, interactive 3D portfolio website built with React, Three.js, and cutti
 1. Clone the repository
 
 ```bash
-git clone [<your-repo-url>](https://github.com/MohamedNourDerbeli/Mohamed-Nour-portfolio)
+git clone https://github.com/MohamedNourDerbeli/Mohamed-Nour-portfolio
 cd Mohamed-Nour-portfolio
 ```
 
