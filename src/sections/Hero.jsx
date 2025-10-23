@@ -51,7 +51,7 @@ const Hero = () => {
             </div>
 
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              I'm Mohamed Nour, a Software Developer crafting clean, high-performance digital experiences.
+              Hey, I’m Mohamed Nour. I turn coffee into code and bugs into “features.”
             </p>
 
             <Button
