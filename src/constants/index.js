@@ -7,6 +7,10 @@ const navLinks = [
     name: "Skills",
     link: "#skills",
   },
+  {
+    name: "Blog",
+    link: "#blog",
+  },
 ];
 
 const words = [

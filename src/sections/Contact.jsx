@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 
 import TitleHeader from "../components/TitleHeader";
 import ContactExperience from "../components/models/contact/ContactExperience";
+import ResumeDownload from "../components/ResumeDownload";
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -46,6 +47,18 @@ const Contact = () => {
           title="Get in Touch – Let’s Connect"
           sub="💬 Have questions or ideas? Let’s talk! 🚀"
         />
+        
+        {/* Resume Download Section */}
+        <div className="mt-8 text-center">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gray-900/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl">
+            <div className="text-center sm:text-left">
+              <h3 className="text-lg font-semibold text-white mb-1">Interested in my background?</h3>
+              <p className="text-gray-400 text-sm">Download my resume for detailed experience and qualifications</p>
+            </div>
+            <ResumeDownload />
+          </div>
+        </div>
+        
         <div className="grid-12-cols mt-16">
           <div className="xl:col-span-5">
             <div className="flex-center card-border rounded-xl p-10">

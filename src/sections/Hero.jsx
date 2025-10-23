@@ -3,6 +3,7 @@ import gsap from "gsap";
 
 import AnimatedCounter from "../components/AnimatedCounter";
 import Button from "../components/Button";
+import ResumeDownload from "../components/ResumeDownload";
 import { words } from "../constants";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
 
@@ -55,11 +56,14 @@ const Hero = () => {
               “features.”
             </p>
 
-            <Button
-              text="See My Projects"
-              className="md:w-80 md:h-16 w-60 h-12"
-              id="counter"
-            />
+            <div className="flex flex-col sm:flex-row gap-4 items-start">
+              <Button
+                text="See My Projects"
+                className="md:w-80 md:h-16 w-60 h-12"
+                id="counter"
+              />
+              <ResumeDownload variant="secondary" />
+            </div>
           </div>
         </header>
 
