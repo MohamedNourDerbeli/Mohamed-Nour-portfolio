@@ -51,7 +51,8 @@ const Hero = () => {
             </div>
 
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Hey, I’m Mohamed Nour. I turn coffee into code and bugs into “features.”
+              Hey, I’m Mohamed Nour. I turn coffee into code and bugs into
+              “features.”
             </p>
 
             <Button
