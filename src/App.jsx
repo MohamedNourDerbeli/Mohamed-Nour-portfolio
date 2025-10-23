@@ -4,6 +4,7 @@ import TechStack from "./sections/TechStack";
 import Hero from "./sections/Hero";
 import ShowcaseSection from "./sections/ShowcaseSection";
 import Navbar from "./components/NavBar";
+import Blog from "./sections/Blog";
 
 const App = () => (
   <>
@@ -11,6 +12,7 @@ const App = () => (
     <Hero />
     <ShowcaseSection />
     <TechStack />
+    <Blog />
     <Contact />
     <Footer />
   </>
