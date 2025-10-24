@@ -1,61 +1,52 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { useMediaQuery } from "react-responsive";
+import { Suspense } from "react";
 
 import Computer from "./Computer";
 
-const ContactExperience = () => {
+// Static phone component (no rotation)
+function StaticPhone() {
   return (
-    <Canvas shadows camera={{ position: [0, 3, 7], fov: 45 }}>
-      {/* Dark scene background */}
-      <color attach="background" args={["#071021"]} />
+    <group scale={1.2} position={[0, -1.5, 0]}>
+      <Computer />
+    </group>
+  );
+}
 
-      {/* Subtle cool ambient */}
-      <ambientLight intensity={0.35} color="#9fb4cf" />
+const ContactExperience = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
-      {/* Key cool directional for form */}
-      <directionalLight position={[6, 8, 4]} intensity={1.2} color="#7dd3fc" />
+  return (
+    <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+      {/* Dark blue background to match site theme */}
+      <color attach="background" args={["#0f172a"]} />
 
-      {/* Fill / rim with a soft purple-blue */}
-      <directionalLight
-        position={[-6, 4, -4]}
-        castShadow
-        intensity={0.9}
-        color="#8b5cf6"
-      />
+      {/* Cool blue ambient lighting */}
+      <ambientLight intensity={0.4} color="#1e293b" />
 
-      {/* Center light to gently illuminate the Computer/model */}
-      <pointLight
-        position={[0, 0.6, -0.4]} // slightly in front and above center
-        intensity={1.2}
-        distance={6}
-        decay={2}
-        color="#e8faff"
-      />
-
-      {/* subtle warm fill to balance cool tones (very low intensity) */}
-      <pointLight position={[0, -0.5, 0]} intensity={0.15} distance={8} color="#ffefd5" />
-
+      {/* Configure OrbitControls similar to Hero */}
       <OrbitControls
-        enableZoom={false}
-        minPolarAngle={Math.PI / 5}
-        maxPolarAngle={Math.PI / 2}
+        enablePan={false} // Prevents panning of the scene
+        enableZoom={!isTablet} // Disables zoom on tablets
+        maxDistance={7} // Maximum distance for zooming out
+        minDistance={5} // Minimum distance for zooming in
+        minPolarAngle={Math.PI / 5} // Minimum angle for vertical rotation
+        maxPolarAngle={Math.PI / 2} // Maximum angle for vertical rotation
       />
 
-      <group scale={[1, 1, 1]}>
-        <mesh
-          receiveShadow
-          position={[0, -1.5, 0]}
-          rotation={[-Math.PI / 2, 0, 0]}
-        >
-          <planeGeometry args={[30, 30]} />
-          {/* Dark, subtle ground */}
-          <meshStandardMaterial color="#0b1220" metalness={0.1} roughness={0.9} />
-        </mesh>
-      </group>
+      {/* Cool blue theme lighting */}
+      <directionalLight position={[5, 5, 5]} intensity={1.0} color="#3b82f6" />
+      <directionalLight position={[-5, 5, 5]} intensity={0.8} color="#1d4ed8" />
+      <pointLight position={[0, 2, 2]} intensity={1.2} color="#60a5fa" />
+      <pointLight position={[0, -2, 2]} intensity={0.6} color="#1e40af" />
 
-      <group scale={0.03} position={[0, -1.49, -2]} castShadow>
-        <Computer />
-      </group>
+      <Suspense fallback={null}>
+        <group scale={isMobile ? 0.7 : 1} position={[0, -1, 0]}>
+          <StaticPhone />
+        </group>
+      </Suspense>
     </Canvas>
   );
 };

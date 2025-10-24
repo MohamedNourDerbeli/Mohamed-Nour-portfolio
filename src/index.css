@@ -671,4 +671,199 @@ section {
   .skill-item {
     padding: 0.75rem;
   }
+}/* Techno
+logies Section Styles */
+.tech-badge {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.tech-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.tech-badge:hover::before {
+  left: 100%;
+}
+
+/* Dark mode adjustments */
+.dark .tech-badge {
+  backdrop-filter: blur(12px);
+}
+
+.dark .tech-badge:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 640px) {
+  .tech-grid .tech-badge {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Animation for tech badges */
+@keyframes techBadgeFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.tech-badge:nth-child(odd):hover {
+  animation: techBadgeFloat 2s ease-in-out infinite;
+}
+
+.tech-badge:nth-child(even):hover {
+  animation: techBadgeFloat 2s ease-in-out infinite reverse;
+}
+
+/* Tooltip styles */
+.tech-badge .tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+
+.tech-badge:hover .tooltip {
+  opacity: 1;
+}
+
+/* Staggered animation delays */
+.tech-badge:nth-child(1) { animation-delay: 0.1s; }
+.tech-badge:nth-child(2) { animation-delay: 0.2s; }
+.tech-badge:nth-child(3) { animation-delay: 0.3s; }
+.tech-badge:nth-child(4) { animation-delay: 0.4s; }
+.tech-badge:nth-child(5) { animation-delay: 0.5s; }
+.tech-badge:nth-child(6) { animation-delay: 0.6s; }
+.tech-badge:nth-child(7) { animation-delay: 0.7s; }
+.tech-badge:nth-child(8) { animation-delay: 0.8s; }
+
+/* Glow effect for certain technologies */
+.tech-badge[data-tech="React"]:hover {
+  box-shadow: 0 0 20px rgba(97, 218, 251, 0.5);
+}
+
+.tech-badge[data-tech="JavaScript"]:hover {
+  box-shadow: 0 0 20px rgba(247, 223, 30, 0.5);
+}
+
+.tech-badge[data-tech="Python"]:hover {
+  box-shadow: 0 0 20px rgba(255, 212, 59, 0.5);
+}
+
+.tech-badge[data-tech="Docker"]:hover {
+  box-shadow: 0 0 20px rgba(46, 159, 222, 0.5);
+}/* Tec
+hnologies Section Styles */
+.tech-grid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-badge {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex !important;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: fit-content;
+  border-radius: 9999px;
+}
+
+.tech-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.tech-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+  border-radius: inherit;
+}
+
+.tech-badge:hover::before {
+  left: 100%;
+}
+
+/* Ensure proper flexbox behavior */
+.tech-grid > div {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+}
+
+/* Dark mode adjustments */
+.dark .tech-badge {
+  backdrop-filter: blur(12px);
+}
+
+.dark .tech-badge:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .tech-badge {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .tech-grid > div {
+    gap: 0.5rem !important;
+  }
+}
+
+/* Animation for tech badges */
+@keyframes techFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.tech-badge:hover {
+  animation: techFloat 2s ease-in-out infinite;
 }

@@ -194,6 +194,24 @@ const skillCategories = [
   },
 ];
 
+// Core Technologies - Clean and Simple
+const coreSkills = [
+  "Python",
+  "JavaScript", 
+  "React",
+  "Node.js",
+  "Docker",
+  "Linux",
+  "Git",
+  "PostgreSQL",
+  "MongoDB",
+  "Wazuh",
+  "Grafana",
+  "Solidity",
+  "Polkadot",
+  "Three.js"
+];
+
 export {
   words,
   counterItems,
@@ -203,4 +221,53 @@ export {
   navLinks,
   projects,
   skillCategories,
+  coreSkills,
+  articles,
 };
+const articles = [
+  {
+    id: 1,
+    title: "From Coffee Cup to Code Execution: A Practical Buffer Overflow Demonstration",
+    excerpt: "A hands-on exploration of buffer overflow vulnerabilities, demonstrating how a simple programming mistake can lead to complete system compromise. Learn the mechanics behind one of the most critical security flaws.",
+    category: "Cybersecurity",
+    readTime: "12 min read",
+    date: "Published on Medium",
+    image: "/images/blog/buffer-overflow.png",
+    tags: ["Buffer Overflow", "Exploitation", "Security", "Vulnerability"],
+    featured: true,
+    url: "https://medium.com/@nourmohamedderbeli/from-coffee-cup-to-code-execution-a-practical-buffer-overflow-demonstration-3396f37bfe36"
+  },
+  {
+    id: 2,
+    title: "CyberBank IDOR Vulnerability Report",
+    excerpt: "A detailed vulnerability assessment revealing Insecure Direct Object Reference (IDOR) flaws in a banking application. Complete with proof of concept and remediation strategies.",
+    category: "Cybersecurity",
+    readTime: "8 min read",
+    date: "Published on Medium",
+    image: "/images/blog/idor-vulnerability.png",
+    tags: ["IDOR", "Vulnerability Assessment", "Banking Security", "Web Security"],
+    url: "https://medium.com/@nourmohamedderbeli/cyberbank-idor-vulnerability-report-a4e1f6e7df46"
+  },
+  {
+    id: 3,
+    title: "Why the Principle of Least Privilege is Non-Negotiable for Modern Cybersecurity",
+    excerpt: "An in-depth analysis of the Principle of Least Privilege and why it's essential for modern cybersecurity frameworks. Real-world examples and implementation strategies included.",
+    category: "Cybersecurity",
+    readTime: "10 min read",
+    date: "Published on Medium",
+    image: "/images/blog/least-privilege.png",
+    tags: ["Least Privilege", "Access Control", "Security Framework", "Best Practices"],
+    url: "https://medium.com/@nourmohamedderbeli/why-the-principle-of-least-privilege-is-non-negotiable-for-modern-cybersecurity-8390b613e82a"
+  },
+  {
+    id: 4,
+    title: "Defense in Depth: The Multi-Layered Shield Every Tech Company Needs",
+    excerpt: "Exploring the Defense in Depth strategy and how multiple security layers create a robust cybersecurity posture. Essential reading for security architects and IT leaders.",
+    category: "Cybersecurity",
+    readTime: "15 min read",
+    date: "Published on Medium",
+    image: "/images/blog/defense-in-depth.png",
+    tags: ["Defense in Depth", "Security Architecture", "Multi-Layer Security", "Enterprise Security"],
+    url: "https://medium.com/@nourmohamedderbeli/defense-in-depth-the-multi-layered-shield-every-tech-company-needs-1cfa5860c479"
+  }
+];
