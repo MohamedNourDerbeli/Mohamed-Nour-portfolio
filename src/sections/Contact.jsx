@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import { useTheme } from "../contexts/ThemeContext";
 import TitleHeader from "../components/TitleHeader";
 import ResumeDownload from "../components/ResumeDownload";
+import { contactMethods } from "../constants";
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -19,51 +20,7 @@ const Contact = () => {
   });
   const { isDark } = useTheme();
 
-  // Contact methods data
-  const contactMethods = [
-    {
-      id: 1,
-      title: "Email Me",
-      subtitle: "Drop me a line",
-      value: "derbelnourmohamed@gmail.com",
-      icon: "📧",
-      color: "from-blue-500 to-cyan-500",
-      action: () => window.open("mailto:derbelnourmohamed@gmail.com"),
-      description: "Best for detailed inquiries and project discussions",
-    },
-    {
-      id: 2,
-      title: "LinkedIn",
-      subtitle: "Let's connect professionally",
-      value: "@md-nr-db",
-      icon: "💼",
-      color: "from-blue-600 to-blue-700",
-      action: () => window.open("https://linkedin.com/in/md-nr-db", "_blank"),
-      description: "Professional networking and career opportunities",
-    },
-    {
-      id: 3,
-      title: "GitHub",
-      subtitle: "Check out my code",
-      value: "@MohamedNourDerbeli",
-      icon: "💻",
-      color: "from-gray-700 to-gray-900",
-      action: () =>
-        window.open("https://github.com/MohamedNourDerbeli", "_blank"),
-      description: "Explore my projects and contributions",
-    },
-    {
-      id: 4,
-      title: "Medium",
-      subtitle: "Read my articles",
-      value: "@nourmohamedderbeli",
-      icon: "✍️",
-      color: "from-green-500 to-emerald-500",
-      action: () =>
-        window.open("https://medium.com/@nourmohamedderbeli", "_blank"),
-      description: "Cybersecurity insights and technical articles",
-    },
-  ];
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

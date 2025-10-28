@@ -182,18 +182,114 @@ const coreSkills = [
   "Three.js",
 ];
 
-export {
-  words,
-  counterItems,
-  socialImgs,
-  techStackIcons,
-  techStackImgs,
-  navLinks,
-  projects,
-  skillCategories,
-  coreSkills,
-  articles,
+// Hero Section Stats
+const heroStats = [
+  {
+    value: "46+",
+    label: "PROJECTS BUILT",
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    value: "4+",
+    label: "YEARS EXPERIENCE",
+    gradient: "from-pink-500 to-purple-500",
+  },
+  {
+    value: "300,000+",
+    label: "LINES OF CODE",
+    gradient: "from-cyan-500 to-blue-500",
+  },
+  {
+    value: "25+",
+    label: "PROBLEM SOLVING",
+    gradient: "from-blue-500 to-purple-500",
+  },
+];
+
+// Footer Quick Links
+const footerLinks = [
+  { name: "Home", href: "#hero" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Blog", href: "#blog" },
+  { name: "Contact", href: "#contact" },
+];
+
+// Footer Tech Stack
+const footerTechStack = [
+  { name: "React", icon: "⚛️" },
+  { name: "Three.js", icon: "🎮" },
+  { name: "Tailwind", icon: "🎨" },
+  { name: "GSAP", icon: "✨" },
+];
+
+// Section Titles and Descriptions
+const sectionContent = {
+  skills: {
+    title: "Skills & Technologies",
+    subtitle: "The technologies I use to bring ideas to life",
+  },
+  projects: {
+    title: "Featured Projects",
+    subtitle: "A showcase of my recent work and contributions",
+  },
+  blog: {
+    title: "Latest Articles",
+    subtitle: "Insights on cybersecurity, development, and technology",
+  },
+  contact: {
+    title: "Let's Work Together",
+    subtitle:
+      "Ready to bring your ideas to life? Let's connect and create something amazing.",
+  },
 };
+
+// Contact Methods
+const contactMethods = [
+  {
+    id: 1,
+    title: "Email Me",
+    subtitle: "Drop me a line",
+    value: "derbelnourmohamed@gmail.com",
+    icon: "📧",
+    color: "from-blue-500 to-cyan-500",
+    action: () => window.open("mailto:derbelnourmohamed@gmail.com"),
+    description: "Best for detailed inquiries and project discussions",
+  },
+  {
+    id: 2,
+    title: "LinkedIn",
+    subtitle: "Let's connect professionally",
+    value: "@md-nr-db",
+    icon: "💼",
+    color: "from-blue-600 to-blue-700",
+    action: () => window.open("https://linkedin.com/in/md-nr-db", "_blank"),
+    description: "Professional networking and career opportunities",
+  },
+  {
+    id: 3,
+    title: "GitHub",
+    subtitle: "Check out my code",
+    value: "@MohamedNourDerbeli",
+    icon: "💻",
+    color: "from-gray-700 to-gray-900",
+    action: () =>
+      window.open("https://github.com/MohamedNourDerbeli", "_blank"),
+    description: "Explore my projects and contributions",
+  },
+  {
+    id: 4,
+    title: "Medium",
+    subtitle: "Read my articles",
+    value: "@nourmohamedderbeli",
+    icon: "✍️",
+    color: "from-green-500 to-emerald-500",
+    action: () =>
+      window.open("https://medium.com/@nourmohamedderbeli", "_blank"),
+    description: "Cybersecurity insights and technical articles",
+  },
+];
+
 const articles = [
   {
     id: 1,
@@ -263,3 +359,36 @@ const articles = [
     url: "https://medium.com/@nourmohamedderbeli/defense-in-depth-the-multi-layered-shield-every-tech-company-needs-1cfa5860c479",
   },
 ];
+
+// Fun messages for the "coming soon" feature
+const funMessages = [
+  "🚀 Hold your horses! This demo is still in the oven!",
+  "🔧 Oops! This feature is still getting its coffee ☕",
+  "🎨 Plot twist: This demo is still being painted!",
+  "⚡ Patience, young padawan! Demo loading... 99.9% complete!",
+  "🎭 This demo is currently rehearsing for its big debut!",
+  "🏗️ Under construction! Hard hats required! 👷‍♂️",
+  "🎪 The demo circus is setting up! Come back soon!",
+  "🌟 This demo is still charging its superpowers!",
+  "🎮 Achievement locked: Demo still in development mode!",
+  "🍕 Demo is in the oven! Please wait while it bakes to perfection!"
+];
+
+export {
+  words,
+  funMessages,
+  counterItems,
+  socialImgs,
+  techStackIcons,
+  techStackImgs,
+  navLinks,
+  projects,
+  skillCategories,
+  coreSkills,
+  articles,
+  heroStats,
+  footerLinks,
+  footerTechStack,
+  contactMethods,
+  sectionContent,
+};

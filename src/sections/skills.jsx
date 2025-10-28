@@ -70,19 +70,23 @@ const Technologies = () => {
   const handleCategoryClick = (categoryIndex) => {
     console.log("Category clicked:", categoryIndex); // Debug log
 
-    // Animate the carousel wheel rotation first
-    const newRotation = categoryIndex * -90;
+    // Calculate rotation to bring selected item to top (12 o'clock position)
+    // Start from -90 degrees (top position) and rotate based on selection
+    const newRotation = -90 - (categoryIndex * 90);
+    
+    // Animate the carousel wheel rotation with smoother easing
     gsap.to(".carousel-wheel-new", {
       rotation: newRotation,
-      duration: 0.8,
-      ease: "cubic-bezier(0.68, -0.55, 0.27, 1.55)",
+      duration: 1.2,
+      ease: "power3.inOut",
     });
 
-    // Animate center label change
+    // Animate center label change with smoother transition
     gsap.to(".carousel-center-label", {
-      scale: 0.8,
-      opacity: 0.5,
-      duration: 0.2,
+      scale: 0.9,
+      opacity: 0.3,
+      y: -10,
+      duration: 0.3,
       ease: "power2.out",
       onComplete: () => {
         // Change the category after label animation
@@ -90,17 +94,18 @@ const Technologies = () => {
         gsap.to(".carousel-center-label", {
           scale: 1,
           opacity: 1,
-          duration: 0.3,
+          y: 0,
+          duration: 0.4,
           ease: "back.out(1.7)",
         });
       },
     });
 
-    // Animate the skills panel transition with delay
+    // Animate the skills panel transition with smoother effect
     gsap.to(".skills-panel", {
-      x: -30,
+      x: -20,
       opacity: 0,
-      duration: 0.3,
+      duration: 0.4,
       ease: "power2.out",
       onComplete: () => {
         // Update skills after fade out
@@ -108,10 +113,10 @@ const Technologies = () => {
           setSelectedCategory(categoryIndex);
           gsap.fromTo(
             ".skills-panel",
-            { x: 30, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+            { x: 20, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
           );
-        }, 100);
+        }, 50);
       },
     });
   };
@@ -126,14 +131,14 @@ const Technologies = () => {
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
-            Technical <span className="text-purple-500">Arsenal</span>
+            Skills & <span className="text-purple-500">Technologies</span>
           </h2>
           <p
             className={`text-lg max-w-2xl mx-auto ${
               isDark ? "text-gray-400" : "text-gray-600"
             }`}
           >
-            My toolkit for building and innovation
+            The technologies I use to bring ideas to life
           </p>
         </div>
 
@@ -150,11 +155,15 @@ const Technologies = () => {
             <div className="flex flex-col items-center gap-6">
               {/* Center Label - Now Above */}
               <div
-                className={`px-6 py-3 rounded-full text-sm font-bold backdrop-blur-md transition-all duration-300 ${
+                className={`carousel-center-label px-6 py-3 rounded-full text-sm font-bold backdrop-blur-md transition-all duration-300 relative z-10 ${
                   isDark
-                    ? "bg-gray-900/80 text-white border border-purple-500/30 shadow-lg shadow-purple-500/20"
-                    : "bg-white/90 text-gray-800 border border-purple-300/50 shadow-lg shadow-purple-300/20"
+                    ? "bg-gray-900/90 text-white border border-purple-500/40 shadow-lg shadow-purple-500/25"
+                    : "bg-white/95 text-gray-900 border border-purple-400/50 shadow-lg shadow-purple-400/25"
                 }`}
+                style={{
+                  color: isDark ? '#ffffff' : '#1f2937',
+                  backgroundColor: isDark ? 'rgba(17, 24, 39, 0.9)' : 'rgba(255, 255, 255, 0.95)'
+                }}
               >
                 {displayCategories[selectedCategory]?.title}
               </div>
@@ -162,8 +171,9 @@ const Technologies = () => {
               {/* Carousel Container */}
               <div className="relative w-[200px] h-[200px] flex justify-center items-center">
                 <div className="carousel-wheel-new">
-                  {displayCategories.map((category, index) => {
-                    const angle = index * 90 * (Math.PI / 180);
+                  {displayCategories.map((_, index) => {
+                    // Start from top position (-90 degrees) and distribute evenly
+                    const angle = (index * 90 - 90) * (Math.PI / 180);
                     const radius = 85;
                     const x = Math.cos(angle) * radius;
                     const y = Math.sin(angle) * radius;
@@ -171,7 +181,7 @@ const Technologies = () => {
                     return (
                       <button
                         key={index}
-                        className={`carousel-item-new ${
+                        className={`carousel-item-new transition-all duration-300 ${
                           selectedCategory === index ? "active" : ""
                         }`}
                         style={{

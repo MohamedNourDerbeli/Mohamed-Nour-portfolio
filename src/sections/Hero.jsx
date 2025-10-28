@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 import Button from "../components/Button";
-import { words } from "../constants";
+import { words, heroStats } from "../constants";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -31,28 +31,7 @@ const Hero = () => {
     );
   });
 
-  const statsData = [
-    {
-      value: "46+",
-      label: "PROJECTS BUILT",
-      gradient: "from-purple-500 to-pink-500",
-    },
-    {
-      value: "4+",
-      label: "YEARS EXPERIENCE",
-      gradient: "from-pink-500 to-purple-500",
-    },
-    {
-      value: "300,000+",
-      label: "LINES OF CODE",
-      gradient: "from-cyan-500 to-blue-500",
-    },
-    {
-      value: "25+",
-      label: "PROBLEM SOLVING",
-      gradient: "from-blue-500 to-purple-500",
-    },
-  ];
+
 
   return (
     <section
@@ -115,7 +94,7 @@ const Hero = () => {
               <Button
                 text="See My Projects"
                 className="md:w-80 md:h-16 w-60 h-12"
-                id="counter"
+                id="projects"
               />
             </div>
           </div>
@@ -130,7 +109,7 @@ const Hero = () => {
       {/* Stats Cards Section */}
       <div className="relative z-20 mt-16 px-5 md:px-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          {statsData.map((stat, index) => (
+          {heroStats.map((stat, index) => (
             <div
               key={index}
               className={`stats-card relative p-6 rounded-2xl backdrop-blur-sm text-center group hover:scale-105 transition-all duration-300 ${
