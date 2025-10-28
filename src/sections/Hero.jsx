@@ -63,9 +63,9 @@ const Hero = () => {
         <img src="/images/bg.png" alt="" />
       </div>
 
-      <div className="hero-layout">
+      <div className="relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] grid xl:grid-cols-2 grid-cols-1 gap-8 items-center px-5 md:px-20">
         {/* LEFT: Hero Content */}
-        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
+        <header className="flex flex-col justify-center">
           <div className="flex flex-col gap-7">
             <div
               className={`hero-text ${isDark ? "text-white" : "text-gray-900"}`}
@@ -122,10 +122,8 @@ const Hero = () => {
         </header>
 
         {/* RIGHT: 3D Model or Visual */}
-        <figure>
-          <div className="hero-3d-layout">
-            <HeroExperience />
-          </div>
+        <figure className="flex items-center justify-center xl:h-[60vh] h-[40vh]">
+          <HeroExperience />
         </figure>
       </div>
 
@@ -135,12 +133,10 @@ const Hero = () => {
           {statsData.map((stat, index) => (
             <div
               key={index}
-              className={`stats-card relative p-6 rounded-2xl bg-gradient-to-br ${
-                stat.gradient
-              } backdrop-blur-sm text-center group hover:scale-105 transition-all duration-300 ${
+              className={`stats-card relative p-6 rounded-2xl backdrop-blur-sm text-center group hover:scale-105 transition-all duration-300 ${
                 isDark
-                  ? "bg-opacity-20 border border-white/10"
-                  : "bg-opacity-10 border border-gray-200 shadow-lg"
+                  ? "bg-transparent border border-white/10"
+                  : "bg-transparent border border-gray-200/30"
               }`}
             >
               <div className="relative z-10">

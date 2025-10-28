@@ -124,7 +124,6 @@ const skillCategories = [
       { name: "TypeScript", level: 50, icon: "/images/logos/ts.png" },
       { name: "Three.js", level: 50, icon: "/images/logos/three.png" },
       { name: "Tailwind CSS", level: 55, icon: "/images/logos/tailwind.png" },
-      { name: "HTML5/CSS3", level: 80, icon: "/images/logos/html.png" },
     ],
   },
   {
@@ -137,7 +136,6 @@ const skillCategories = [
       { name: "Express.js", level: 60, icon: "/images/logos/express.png" },
       { name: "FastAPI", level: 56, icon: "/images/logos/fastapi.png" },
       { name: "REST APIs", level: 65, icon: "/images/logos/api.png" },
-      { name: "GraphQL", level: 40, icon: "/images/logos/graphql.png" },
     ],
   },
   {
@@ -164,44 +162,12 @@ const skillCategories = [
       { name: "Nginx", level: 60, icon: "/images/logos/nginx.png" },
     ],
   },
-  {
-    title: "Security & Monitoring",
-    description: "Cybersecurity & system monitoring",
-    icon: "🔒",
-    skills: [
-      { name: "Wazuh", level: 90, icon: "/images/logos/wazuh.png" },
-      { name: "Graylog", level: 85, icon: "/images/logos/graylog.png" },
-      { name: "Grafana", level: 80, icon: "/images/logos/grafana.png" },
-      { name: "SIEM", level: 85, icon: "/images/logos/siem.png" },
-      {
-        name: "Penetration Testing",
-        level: 75,
-        icon: "/images/logos/pentest.png",
-      },
-    ],
-  },
-  {
-    title: "Blockchain & Web3",
-    description: "Decentralized applications & smart contracts",
-    icon: "⛓️",
-    skills: [
-      { name: "Solidity", level: 80, icon: "/images/logos/solidity.png" },
-      { name: "Polkadot", level: 75, icon: "/images/logos/polkadot.png" },
-      { name: "Hardhat", level: 80, icon: "/images/logos/hardhat.png" },
-      { name: "Web3.js", level: 75, icon: "/images/logos/web3.png" },
-      {
-        name: "Smart Contracts",
-        level: 80,
-        icon: "/images/logos/ethereum.png",
-      },
-    ],
-  },
 ];
 
 // Core Technologies - Clean and Simple
 const coreSkills = [
   "Python",
-  "JavaScript", 
+  "JavaScript",
   "React",
   "Node.js",
   "Docker",
@@ -213,7 +179,7 @@ const coreSkills = [
   "Grafana",
   "Solidity",
   "Polkadot",
-  "Three.js"
+  "Three.js",
 ];
 
 export {
@@ -231,47 +197,69 @@ export {
 const articles = [
   {
     id: 1,
-    title: "From Coffee Cup to Code Execution: A Practical Buffer Overflow Demonstration",
-    excerpt: "A hands-on exploration of buffer overflow vulnerabilities, demonstrating how a simple programming mistake can lead to complete system compromise. Learn the mechanics behind one of the most critical security flaws.",
+    title:
+      "From Coffee Cup to Code Execution: A Practical Buffer Overflow Demonstration",
+    excerpt:
+      "A hands-on exploration of buffer overflow vulnerabilities, demonstrating how a simple programming mistake can lead to complete system compromise. Learn the mechanics behind one of the most critical security flaws.",
     category: "Cybersecurity",
     readTime: "12 min read",
     date: "Published on Medium",
     image: "/images/blog/buffer-overflow.png",
     tags: ["Buffer Overflow", "Exploitation", "Security", "Vulnerability"],
     featured: true,
-    url: "https://medium.com/@nourmohamedderbeli/from-coffee-cup-to-code-execution-a-practical-buffer-overflow-demonstration-3396f37bfe36"
+    url: "https://medium.com/@nourmohamedderbeli/from-coffee-cup-to-code-execution-a-practical-buffer-overflow-demonstration-3396f37bfe36",
   },
   {
     id: 2,
     title: "CyberBank IDOR Vulnerability Report",
-    excerpt: "A detailed vulnerability assessment revealing Insecure Direct Object Reference (IDOR) flaws in a banking application. Complete with proof of concept and remediation strategies.",
+    excerpt:
+      "A detailed vulnerability assessment revealing Insecure Direct Object Reference (IDOR) flaws in a banking application. Complete with proof of concept and remediation strategies.",
     category: "Cybersecurity",
     readTime: "8 min read",
     date: "Published on Medium",
     image: "/images/blog/idor-vulnerability.png",
-    tags: ["IDOR", "Vulnerability Assessment", "Banking Security", "Web Security"],
-    url: "https://medium.com/@nourmohamedderbeli/cyberbank-idor-vulnerability-report-a4e1f6e7df46"
+    tags: [
+      "IDOR",
+      "Vulnerability Assessment",
+      "Banking Security",
+      "Web Security",
+    ],
+    url: "https://medium.com/@nourmohamedderbeli/cyberbank-idor-vulnerability-report-a4e1f6e7df46",
   },
   {
     id: 3,
-    title: "Why the Principle of Least Privilege is Non-Negotiable for Modern Cybersecurity",
-    excerpt: "An in-depth analysis of the Principle of Least Privilege and why it's essential for modern cybersecurity frameworks. Real-world examples and implementation strategies included.",
+    title:
+      "Why the Principle of Least Privilege is Non-Negotiable for Modern Cybersecurity",
+    excerpt:
+      "An in-depth analysis of the Principle of Least Privilege and why it's essential for modern cybersecurity frameworks. Real-world examples and implementation strategies included.",
     category: "Cybersecurity",
     readTime: "10 min read",
     date: "Published on Medium",
     image: "/images/blog/least-privilege.png",
-    tags: ["Least Privilege", "Access Control", "Security Framework", "Best Practices"],
-    url: "https://medium.com/@nourmohamedderbeli/why-the-principle-of-least-privilege-is-non-negotiable-for-modern-cybersecurity-8390b613e82a"
+    tags: [
+      "Least Privilege",
+      "Access Control",
+      "Security Framework",
+      "Best Practices",
+    ],
+    url: "https://medium.com/@nourmohamedderbeli/why-the-principle-of-least-privilege-is-non-negotiable-for-modern-cybersecurity-8390b613e82a",
   },
   {
     id: 4,
-    title: "Defense in Depth: The Multi-Layered Shield Every Tech Company Needs",
-    excerpt: "Exploring the Defense in Depth strategy and how multiple security layers create a robust cybersecurity posture. Essential reading for security architects and IT leaders.",
+    title:
+      "Defense in Depth: The Multi-Layered Shield Every Tech Company Needs",
+    excerpt:
+      "Exploring the Defense in Depth strategy and how multiple security layers create a robust cybersecurity posture. Essential reading for security architects and IT leaders.",
     category: "Cybersecurity",
     readTime: "15 min read",
     date: "Published on Medium",
     image: "/images/blog/defense-in-depth.png",
-    tags: ["Defense in Depth", "Security Architecture", "Multi-Layer Security", "Enterprise Security"],
-    url: "https://medium.com/@nourmohamedderbeli/defense-in-depth-the-multi-layered-shield-every-tech-company-needs-1cfa5860c479"
-  }
+    tags: [
+      "Defense in Depth",
+      "Security Architecture",
+      "Multi-Layer Security",
+      "Enterprise Security",
+    ],
+    url: "https://medium.com/@nourmohamedderbeli/defense-in-depth-the-multi-layered-shield-every-tech-company-needs-1cfa5860c479",
+  },
 ];
