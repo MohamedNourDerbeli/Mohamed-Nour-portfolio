@@ -1,41 +1,77 @@
 import * as THREE from "three";
 
-const HeroLights = () => (
+const HeroLights = ({ isDark }) => (
   <>
-    {/* lamp's light */}
+    {/* Main desk lamp - focused on center */}
     <spotLight
-      position={[2, 5, 6]}
-      angle={0.15}
-      penumbra={0.2}
-      intensity={100}
-      color="white"
+      position={[2, 4, 3]}
+      angle={0.2}
+      penumbra={0.3}
+      intensity={isDark ? 100 : 80}
+      color={isDark ? "white" : "#fff8dc"}
+      target-position={[1, 0, 2]}
     />
-    {/* bluish overhead lamp */}
+    
+    {/* Overhead light - softer, focused on desk area */}
     <spotLight
-      position={[4, 5, 4]}
+      position={[1, 6, 2]}
+      angle={0.25}
+      penumbra={0.6}
+      intensity={isDark ? 40 : 60}
+      color={isDark ? "#4cc9f0" : "#ffffff"}
+      target-position={[1, 0, 2]}
+    />
+    
+    {/* Gentle side fill - much softer */}
+    <spotLight
+      position={[-2, 4, 3]}
       angle={0.3}
-      penumbra={0.5}
-      intensity={40}
-      color="#4cc9f0"
+      penumbra={0.8}
+      intensity={isDark ? 60 : 40}
+      color={isDark ? "#9d4edd" : "#fff8dc"}
     />
-    {/* purplish side fill */}
-    <spotLight
-      position={[-3, 5, 5]}
-      angle={0.4}
-      penumbra={1}
-      intensity={60}
-      color="#9d4edd"
-    />
-    {/* area light for soft moody fill */}
+    
+    {/* Area light - smaller and more focused */}
     <primitive
-      object={new THREE.RectAreaLight("#a259ff", 8, 3, 2)}
-      position={[1, 3, 4]}
-      rotation={[-Math.PI / 4, Math.PI / 4, 0]}
-      intensity={15}
+      object={new THREE.RectAreaLight(
+        isDark ? "#a259ff" : "#ffffff", 
+        isDark ? 8 : 12, 
+        2, 
+        1.5
+      )}
+      position={[1, 2.5, 3]}
+      rotation={[-Math.PI / 6, 0, 0]}
+      intensity={isDark ? 15 : 20}
     />
-    {/* subtle point light for atmospheric tone */}
-    <pointLight position={[0, 1, 0]} intensity={10} color="#7209b7" />
-    <pointLight position={[1, 2, -2]} intensity={10} color="#0d00a4" />
+    
+    {/* Subtle atmospheric lights - much dimmer */}
+    <pointLight 
+      position={[0.5, 1.5, 1.5]} 
+      intensity={isDark ? 10 : 15} 
+      color={isDark ? "#7209b7" : "#ffffff"} 
+    />
+    <pointLight 
+      position={[1.5, 1, 2.5]} 
+      intensity={isDark ? 10 : 12} 
+      color={isDark ? "#0d00a4" : "#fff8dc"} 
+    />
+    
+    {/* Softer daylight simulation for light mode */}
+    {!isDark && (
+      <>
+        <directionalLight
+          position={[8, 8, 4]}
+          intensity={0.4}
+          color="#ffffff"
+          castShadow
+        />
+        <hemisphereLight
+          skyColor="#e6f3ff"
+          groundColor="#f8f9fa"
+          intensity={0.3}
+        />
+      </>
+    )}
   </>
 );
 
