@@ -38,8 +38,19 @@ const Hero = () => {
       id="hero"
       className="relative overflow-hidden bg-transparent"
     >
-      <div className="absolute top-0 left-0 z-10">
-        <img src="/images/bg.png" alt="" />
+      <div className="absolute top-0 left-0 z-10 w-full h-full">
+        <img 
+          src="/images/bg.png" 
+          alt="" 
+          className="w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          style={{ 
+            aspectRatio: '16/9',
+            maxWidth: '100%',
+            height: 'auto'
+          }}
+        />
       </div>
 
       <div className="relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] grid xl:grid-cols-2 grid-cols-1 gap-8 items-center px-5 md:px-20">

@@ -6,6 +6,7 @@ const AnimatedBackground = () => {
   const containerRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Wait for DOM elements to be available
@@ -183,7 +184,10 @@ const AnimatedBackground = () => {
     };
 
     // Initialize after a short delay to ensure DOM is ready
-    const timer = setTimeout(initializeShapeBreaking, 100);
+    const timer = setTimeout(() => {
+      initializeShapeBreaking();
+      setIsLoaded(true);
+    }, 100);
     
     return () => {
       clearTimeout(timer);
@@ -192,10 +196,79 @@ const AnimatedBackground = () => {
 
 
 
+  // Predefined positions to prevent layout shifts
+  const elements = [
+    // Squares
+    { type: 'square', top: '5%', left: '2%', size: 50, delay: 0, color: 'purple-blue' },
+    { type: 'square', top: '15%', right: '3%', size: 45, delay: 2, color: 'pink-red' },
+    { type: 'square', bottom: '5%', left: '5%', size: 55, delay: 4, color: 'indigo-purple' },
+    { type: 'square', bottom: '10%', right: '2%', size: 40, delay: 1, color: 'cyan-teal' },
+    { type: 'square', top: '2%', right: '25%', size: 48, delay: 3, color: 'orange-yellow' },
+    
+    // Circles
+    { type: 'circle', top: '35%', left: '1%', size: 50, delay: 1.5, color: 'emerald-green' },
+    { type: 'circle', top: '60%', right: '1%', size: 42, delay: 2.5, color: 'blue-cyan' },
+    { type: 'circle', top: '8%', left: '15%', size: 58, delay: 0.5, color: 'purple-pink' },
+    { type: 'circle', bottom: '8%', right: '20%', size: 46, delay: 4.5, color: 'yellow-orange' },
+    { type: 'circle', top: '45%', right: '1%', size: 52, delay: 3.5, color: 'red-rose' },
+    
+    // Triangles
+    { type: 'triangle', top: '20%', left: '3%', size: 50, delay: 1, color: 'slate-gray' },
+    { type: 'triangle', bottom: '15%', left: '8%', size: 44, delay: 2, color: 'indigo-blue' },
+    { type: 'triangle', top: '3%', left: '35%', size: 56, delay: 3, color: 'emerald-green' },
+    { type: 'triangle', bottom: '3%', right: '8%', size: 48, delay: 4, color: 'pink-rose' },
+    { type: 'triangle', top: '25%', right: '2%', size: 52, delay: 0.5, color: 'amber-yellow' }
+  ];
+
+  const getColorClasses = (color, type) => {
+    const colors = {
+      'purple-blue': isDark 
+        ? 'bg-gradient-to-br from-purple-600/80 to-blue-600/80 border border-purple-400/30' 
+        : 'bg-gradient-to-br from-purple-400/80 to-blue-400/80 border border-purple-300/50',
+      'pink-red': isDark 
+        ? 'bg-gradient-to-br from-pink-600/80 to-red-600/80 border border-pink-400/30' 
+        : 'bg-gradient-to-br from-pink-400/80 to-red-400/80 border border-pink-300/50',
+      'indigo-purple': isDark 
+        ? 'bg-gradient-to-br from-indigo-600/80 to-purple-600/80 border border-indigo-400/30' 
+        : 'bg-gradient-to-br from-indigo-400/80 to-purple-400/80 border border-indigo-300/50',
+      'cyan-teal': isDark 
+        ? 'bg-gradient-to-br from-cyan-600/80 to-teal-600/80 border border-cyan-400/30' 
+        : 'bg-gradient-to-br from-cyan-400/80 to-teal-400/80 border border-cyan-300/50',
+      'orange-yellow': isDark 
+        ? 'bg-gradient-to-br from-orange-600/80 to-yellow-600/80 border border-orange-400/30' 
+        : 'bg-gradient-to-br from-orange-400/80 to-yellow-400/80 border border-orange-300/50',
+      'emerald-green': isDark 
+        ? 'bg-gradient-to-br from-emerald-400 to-green-500 border-2 border-emerald-300/50' 
+        : 'bg-gradient-to-br from-emerald-500 to-green-600 border-2 border-emerald-400/50',
+      'blue-cyan': isDark 
+        ? 'bg-gradient-to-br from-blue-400 to-cyan-500 border-2 border-blue-300/50' 
+        : 'bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-blue-400/50',
+      'purple-pink': isDark 
+        ? 'bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-purple-300/50' 
+        : 'bg-gradient-to-br from-purple-500 to-pink-600 border-2 border-purple-400/50',
+      'yellow-orange': isDark 
+        ? 'bg-gradient-to-br from-yellow-400 to-orange-500 border-2 border-yellow-300/50' 
+        : 'bg-gradient-to-br from-yellow-500 to-orange-600 border-2 border-yellow-400/50',
+      'red-rose': isDark 
+        ? 'bg-gradient-to-br from-red-400 to-rose-500 border-2 border-red-300/50' 
+        : 'bg-gradient-to-br from-red-500 to-rose-600 border-2 border-red-400/50',
+      'slate-gray': isDark 
+        ? 'bg-gradient-to-br from-slate-300 to-gray-100' 
+        : 'bg-gradient-to-br from-slate-700 to-gray-900',
+      'indigo-blue': isDark 
+        ? 'bg-gradient-to-br from-indigo-300 to-blue-100' 
+        : 'bg-gradient-to-br from-indigo-700 to-blue-900',
+      'amber-yellow': isDark 
+        ? 'bg-gradient-to-br from-amber-300 to-yellow-100' 
+        : 'bg-gradient-to-br from-amber-700 to-yellow-900'
+    };
+    return colors[color] || colors['purple-blue'];
+  };
+
   return (
     <div 
       ref={containerRef}
-      className={`fixed inset-0 w-full h-full overflow-hidden z-0 transition-colors duration-300 ${
+      className={`animated-background-container fixed inset-0 w-full h-full overflow-hidden z-0 transition-colors duration-300 ${
         isDark ? 'bg-black' : 'bg-white'
       }`}
       style={{ pointerEvents: 'auto', cursor: 'default' }}
@@ -208,114 +281,79 @@ const AnimatedBackground = () => {
             left: mousePosition.x - 16,
             top: mousePosition.y - 16,
             background: isDark ? 'white' : 'black',
-            transition: 'all 0.1s ease',
+            transition: 'transform 0.1s ease',
+            transform: 'translate3d(0,0,0)',
           }}
         />
       )}
-      
 
-      {/* Squares - positioned in corners and edges */}
-      <div className={`animated-bg-square absolute top-[5%] left-[2%] w-[50px] h-[50px] z-[5] rounded-lg shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-12 cursor-pointer ${
-        isDark 
-          ? 'bg-gradient-to-br from-purple-600/80 to-blue-600/80 border border-purple-400/30 hover:border-purple-300/60' 
-          : 'bg-gradient-to-br from-purple-400/80 to-blue-400/80 border border-purple-300/50 hover:border-purple-400/70'
-      }`} style={{ animation: 'floatRandomSquare 12s infinite ease-in-out' }}></div>
-      
-      <div className={`animated-bg-square absolute top-[15%] right-[3%] w-[45px] h-[45px] z-[5] rounded-lg shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-12 cursor-pointer ${
-        isDark 
-          ? 'bg-gradient-to-br from-pink-600/80 to-red-600/80 border border-pink-400/30 hover:border-pink-300/60' 
-          : 'bg-gradient-to-br from-pink-400/80 to-red-400/80 border border-pink-300/50 hover:border-pink-400/70'
-      }`} style={{ animation: 'floatRandomSquare 14s infinite ease-in-out', animationDelay: '2s' }}></div>
-      
-      <div className={`animated-bg-square absolute bottom-[5%] left-[5%] w-[55px] h-[55px] z-[5] rounded-lg shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-12 cursor-pointer ${
-        isDark 
-          ? 'bg-gradient-to-br from-indigo-600/80 to-purple-600/80 border border-indigo-400/30' 
-          : 'bg-gradient-to-br from-indigo-400/80 to-purple-400/80 border border-indigo-300/50'
-      }`} style={{ animation: 'floatRandomSquare 16s infinite ease-in-out', animationDelay: '4s' }}></div>
-      
-      <div className={`animated-bg-square absolute bottom-[10%] right-[2%] w-[40px] h-[40px] z-[5] rounded-lg shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-12 cursor-pointer ${
-        isDark 
-          ? 'bg-gradient-to-br from-cyan-600/80 to-teal-600/80 border border-cyan-400/30' 
-          : 'bg-gradient-to-br from-cyan-400/80 to-teal-400/80 border border-cyan-300/50'
-      }`} style={{ animation: 'floatRandomSquare 10s infinite ease-in-out', animationDelay: '1s' }}></div>
-      
-      <div className={`animated-bg-square absolute top-[2%] right-[25%] w-[48px] h-[48px] z-[5] rounded-lg shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-12 cursor-pointer ${
-        isDark 
-          ? 'bg-gradient-to-br from-orange-600/80 to-yellow-600/80 border border-orange-400/30' 
-          : 'bg-gradient-to-br from-orange-400/80 to-yellow-400/80 border border-orange-300/50'
-      }`} style={{ animation: 'floatRandomSquare 13s infinite ease-in-out', animationDelay: '3s' }}></div>
+      {/* Render all elements with layout shift prevention */}
+      {elements.map((element, index) => {
+        const positionStyle = {
+          ...(element.top && { top: element.top }),
+          ...(element.bottom && { bottom: element.bottom }),
+          ...(element.left && { left: element.left }),
+          ...(element.right && { right: element.right }),
+        };
 
-      {/* Circles - positioned along edges */}
-      <div className={`animated-bg-circle absolute top-[35%] left-[1%] w-[50px] h-[50px] z-[5] rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-125 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-emerald-400 to-green-500 border-2 border-emerald-300/50 hover:border-emerald-200/70' : 'bg-gradient-to-br from-emerald-500 to-green-600 border-2 border-emerald-400/50 hover:border-emerald-500/70'
-      }`} style={{ animation: 'floatRandomSquare 15s infinite ease-in-out', animationDelay: '1.5s' }}></div>
-      
-      <div className={`animated-bg-circle absolute top-[60%] right-[1%] w-[42px] h-[42px] z-[5] rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-125 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-blue-400 to-cyan-500 border-2 border-blue-300/50' : 'bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-blue-400/50'
-      }`} style={{ animation: 'floatRandomSquare 11s infinite ease-in-out', animationDelay: '2.5s' }}></div>
-      
-      <div className={`animated-bg-circle absolute top-[8%] left-[15%] w-[58px] h-[58px] z-[5] rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-125 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-purple-300/50' : 'bg-gradient-to-br from-purple-500 to-pink-600 border-2 border-purple-400/50'
-      }`} style={{ animation: 'floatRandomSquare 17s infinite ease-in-out', animationDelay: '0.5s' }}></div>
-      
-      <div className={`animated-bg-circle absolute bottom-[8%] right-[20%] w-[46px] h-[46px] z-[5] rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-125 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-yellow-400 to-orange-500 border-2 border-yellow-300/50' : 'bg-gradient-to-br from-yellow-500 to-orange-600 border-2 border-yellow-400/50'
-      }`} style={{ animation: 'floatRandomSquare 9s infinite ease-in-out', animationDelay: '4.5s' }}></div>
-      
-      <div className={`animated-bg-circle absolute top-[45%] right-[1%] w-[52px] h-[52px] z-[5] rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-125 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-red-400 to-rose-500 border-2 border-red-300/50' : 'bg-gradient-to-br from-red-500 to-rose-600 border-2 border-red-400/50'
-      }`} style={{ animation: 'floatRandomSquare 18s infinite ease-in-out', animationDelay: '3.5s' }}></div>
-
-      {/* Triangles - positioned in corners and edges */}
-      <div className={`animated-bg-triangle absolute top-[20%] left-[3%] w-[50px] h-[50px] z-[5] shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-45 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-slate-300 to-gray-100' : 'bg-gradient-to-br from-slate-700 to-gray-900'
-      }`} style={{
-        clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        WebkitClipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
-        animation: 'floatRandomSquare 14s infinite ease-in-out',
-        animationDelay: '1s'
-      }}></div>
-      
-      <div className={`animated-bg-triangle absolute bottom-[15%] left-[8%] w-[44px] h-[44px] z-[5] shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-45 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-indigo-300 to-blue-100' : 'bg-gradient-to-br from-indigo-700 to-blue-900'
-      }`} style={{
-        clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        WebkitClipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
-        animation: 'floatRandomSquare 16s infinite ease-in-out',
-        animationDelay: '2s'
-      }}></div>
-      
-      <div className={`animated-bg-triangle absolute top-[3%] left-[35%] w-[56px] h-[56px] z-[5] shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-45 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-emerald-300 to-green-100' : 'bg-gradient-to-br from-emerald-700 to-green-900'
-      }`} style={{
-        clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        WebkitClipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
-        animation: 'floatRandomSquare 12s infinite ease-in-out',
-        animationDelay: '3s'
-      }}></div>
-      
-      <div className={`animated-bg-triangle absolute bottom-[3%] right-[8%] w-[48px] h-[48px] z-[5] shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-45 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-pink-300 to-rose-100' : 'bg-gradient-to-br from-pink-700 to-rose-900'
-      }`} style={{
-        clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        WebkitClipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
-        animation: 'floatRandomSquare 10s infinite ease-in-out',
-        animationDelay: '4s'
-      }}></div>
-      
-      <div className={`animated-bg-triangle absolute top-[25%] right-[2%] w-[52px] h-[52px] z-[5] shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:scale-110 hover:rotate-45 cursor-pointer ${
-        isDark ? 'bg-gradient-to-br from-amber-300 to-yellow-100' : 'bg-gradient-to-br from-amber-700 to-yellow-900'
-      }`} style={{
-        clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        WebkitClipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
-        animation: 'floatRandomSquare 15s infinite ease-in-out',
-        animationDelay: '0.5s'
-      }}></div>
+        const baseClasses = `animated-bg-element animated-bg-${element.type} absolute z-[5] shadow-lg backdrop-blur-sm transition-transform duration-300 cursor-pointer`;
+        
+        if (element.type === 'square') {
+          return (
+            <div
+              key={`square-${index}`}
+              className={`${baseClasses} rounded-lg hover:shadow-2xl hover:scale-110 hover:rotate-12 ${getColorClasses(element.color)} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                ...positionStyle,
+                width: `${element.size}px`,
+                height: `${element.size}px`,
+                transform: 'translate3d(0,0,0)',
+                animation: isLoaded ? `floatRandomSquareOptimized ${12 + element.delay}s infinite ease-in-out ${element.delay}s` : 'none',
+                willChange: 'transform'
+              }}
+            />
+          );
+        }
+        
+        if (element.type === 'circle') {
+          return (
+            <div
+              key={`circle-${index}`}
+              className={`${baseClasses} rounded-full hover:shadow-2xl hover:scale-125 ${getColorClasses(element.color)} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                ...positionStyle,
+                width: `${element.size}px`,
+                height: `${element.size}px`,
+                transform: 'translate3d(0,0,0)',
+                animation: isLoaded ? `floatCircleOptimized ${10 + element.delay}s infinite ease-in-out ${element.delay}s` : 'none',
+                willChange: 'transform'
+              }}
+            />
+          );
+        }
+        
+        if (element.type === 'triangle') {
+          return (
+            <div
+              key={`triangle-${index}`}
+              className={`${baseClasses} hover:shadow-2xl hover:scale-110 hover:rotate-45 ${getColorClasses(element.color)} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                ...positionStyle,
+                width: `${element.size}px`,
+                height: `${element.size}px`,
+                clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+                WebkitClipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
+                transform: 'translate3d(0,0,0)',
+                animation: isLoaded ? `floatTriangleOptimized ${8 + element.delay}s infinite ease-in-out ${element.delay}s` : 'none',
+                willChange: 'transform'
+              }}
+            />
+          );
+        }
+        
+        return null;
+      })}
     </div>
   );
 };

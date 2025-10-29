@@ -24,9 +24,9 @@ const App = () => {
       {isLoading ? (
         <LoadingScreen onComplete={handleLoadingComplete} />
       ) : (
-        <div className="min-h-screen text-gray-900 dark:text-white relative">
+        <div className="min-h-screen text-gray-900 dark:text-white relative layout-stable theme-stable">
           <AnimatedBackground />
-          <div className="relative z-10">
+          <div className="relative z-10 no-layout-shift">
             <SmoothScroll />
             <Navbar />
             <Hero />

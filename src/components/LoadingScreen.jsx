@@ -59,23 +59,35 @@ const LoadingScreen = ({ onComplete }) => {
       
       {/* Enhanced Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Orbs */}
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div
-            key={`orb-${i}`}
-            className={`absolute rounded-full blur-xl opacity-20 ${
-              i % 3 === 0 ? 'bg-purple-500 w-32 h-32' :
-              i % 3 === 1 ? 'bg-cyan-500 w-24 h-24' :
-              'bg-blue-500 w-20 h-20'
-            }`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${4 + Math.random() * 4}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`
-            }}
-          />
-        ))}
+        {/* Floating Orbs - Fixed positions to prevent layout shift */}
+        {Array.from({ length: 12 }).map((_, i) => {
+          // Predefined positions to prevent layout shifts
+          const positions = [
+            { left: '10%', top: '15%' }, { left: '85%', top: '25%' }, { left: '20%', top: '70%' },
+            { left: '75%', top: '60%' }, { left: '5%', top: '45%' }, { left: '90%', top: '80%' },
+            { left: '40%', top: '10%' }, { left: '60%', top: '85%' }, { left: '15%', top: '90%' },
+            { left: '80%', top: '5%' }, { left: '50%', top: '50%' }, { left: '30%', top: '35%' }
+          ];
+          
+          return (
+            <div
+              key={`orb-${i}`}
+              className={`loading-orb absolute rounded-full blur-xl opacity-20 ${
+                i % 3 === 0 ? 'bg-purple-500 w-32 h-32' :
+                i % 3 === 1 ? 'bg-cyan-500 w-24 h-24' :
+                'bg-blue-500 w-20 h-20'
+              }`}
+              style={{
+                left: positions[i].left,
+                top: positions[i].top,
+                transform: 'translate3d(0,0,0)',
+                animation: `floatOrbOptimized ${4 + (i % 4)}s ease-in-out infinite`,
+                animationDelay: `${(i % 3) * 0.5}s`,
+                willChange: 'transform'
+              }}
+            />
+          );
+        })}
         
         {/* Animated Grid Pattern */}
         <div className={`absolute inset-0 opacity-5 ${
