@@ -32,11 +32,17 @@ const FloatingContactButton = () => {
   return (
     <button
       onClick={scrollToContact}
-      className={`fixed bottom-6 right-6 z-40 group transition-all duration-300 ${
+      className={`floating-contact-button fixed bottom-6 right-6 z-[9999] group transition-all duration-300 ${
         isVisible 
           ? "translate-y-0 opacity-100 scale-100" 
           : "translate-y-16 opacity-0 scale-75 pointer-events-none"
       }`}
+      style={{ 
+        position: 'fixed',
+        bottom: '1.5rem',
+        right: '1.5rem',
+        zIndex: 9999 
+      }}
     >
       {/* Main button */}
       <div className={`relative w-14 h-14 rounded-full shadow-lg transition-all duration-300 group-hover:scale-110 ${
@@ -70,7 +76,7 @@ const FloatingContactButton = () => {
       </div>
 
       {/* Tooltip */}
-      <div className={`absolute bottom-16 right-0 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 ${
+      <div className={`absolute bottom-16 right-0 px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 z-[10000] ${
         isDark
           ? "bg-gray-800 text-white border border-gray-700"
           : "bg-white text-gray-900 border border-gray-200 shadow-lg"
