@@ -1,12 +1,13 @@
-const CACHE_NAME = 'mohamed-nour-portfolio-v1';
+const CACHE_NAME = 'mohamed-nour-portfolio-v2-optimized';
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/manifest.json',
-  // Add your key assets here
+  '/offline.html',
+  // Critical assets
   '/images/bg.png',
-  '/images/arrow-down.svg'
+  '/images/arrow-down.svg',
+  // Google Fonts (will be cached after first load)
+  'https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap'
 ];
 
 // Install event - cache resources
