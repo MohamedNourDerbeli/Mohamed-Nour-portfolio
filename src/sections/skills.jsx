@@ -193,6 +193,9 @@ const Technologies = () => {
                           console.log("Button clicked:", index);
                           handleCategoryClick(index);
                         }}
+                        aria-label={`Select ${skillCategories[index]?.title || 'skill category'}`}
+                        role="tab"
+                        aria-selected={selectedCategory === index}
                       >
                         <div className="item-icon">
                           {index === 0 && ( // Frontend Development

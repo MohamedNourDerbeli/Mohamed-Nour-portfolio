@@ -196,28 +196,45 @@ const AnimatedBackground = () => {
 
 
 
-  // Predefined positions to prevent layout shifts
+  // Expanded predefined positions with more shapes
   const elements = [
-    // Squares
+    // Squares - More distributed
     { type: 'square', top: '5%', left: '2%', size: 50, delay: 0, color: 'purple-blue' },
     { type: 'square', top: '15%', right: '3%', size: 45, delay: 2, color: 'pink-red' },
     { type: 'square', bottom: '5%', left: '5%', size: 55, delay: 4, color: 'indigo-purple' },
     { type: 'square', bottom: '10%', right: '2%', size: 40, delay: 1, color: 'cyan-teal' },
     { type: 'square', top: '2%', right: '25%', size: 48, delay: 3, color: 'orange-yellow' },
+    { type: 'square', top: '40%', left: '8%', size: 42, delay: 1.8, color: 'emerald-green' },
+    { type: 'square', bottom: '25%', right: '15%', size: 38, delay: 3.2, color: 'blue-cyan' },
+    { type: 'square', top: '70%', left: '25%', size: 46, delay: 2.7, color: 'purple-pink' },
     
-    // Circles
+    // Circles - More variety
     { type: 'circle', top: '35%', left: '1%', size: 50, delay: 1.5, color: 'emerald-green' },
     { type: 'circle', top: '60%', right: '1%', size: 42, delay: 2.5, color: 'blue-cyan' },
     { type: 'circle', top: '8%', left: '15%', size: 58, delay: 0.5, color: 'purple-pink' },
     { type: 'circle', bottom: '8%', right: '20%', size: 46, delay: 4.5, color: 'yellow-orange' },
     { type: 'circle', top: '45%', right: '1%', size: 52, delay: 3.5, color: 'red-rose' },
+    { type: 'circle', top: '25%', left: '12%', size: 36, delay: 1.2, color: 'cyan-teal' },
+    { type: 'circle', bottom: '35%', left: '3%', size: 44, delay: 3.8, color: 'indigo-purple' },
+    { type: 'circle', top: '80%', right: '8%', size: 40, delay: 2.1, color: 'orange-yellow' },
     
-    // Triangles
+    // Triangles - More distributed
     { type: 'triangle', top: '20%', left: '3%', size: 50, delay: 1, color: 'slate-gray' },
     { type: 'triangle', bottom: '15%', left: '8%', size: 44, delay: 2, color: 'indigo-blue' },
     { type: 'triangle', top: '3%', left: '35%', size: 56, delay: 3, color: 'emerald-green' },
     { type: 'triangle', bottom: '3%', right: '8%', size: 48, delay: 4, color: 'pink-rose' },
-    { type: 'triangle', top: '25%', right: '2%', size: 52, delay: 0.5, color: 'amber-yellow' }
+    { type: 'triangle', top: '25%', right: '2%', size: 52, delay: 0.5, color: 'amber-yellow' },
+    { type: 'triangle', top: '55%', left: '18%', size: 38, delay: 2.3, color: 'purple-blue' },
+    { type: 'triangle', bottom: '45%', right: '25%', size: 42, delay: 1.7, color: 'emerald-green' },
+    { type: 'triangle', top: '12%', right: '12%', size: 46, delay: 3.4, color: 'blue-cyan' },
+    
+    // New shape types - Hexagons and Stars
+    { type: 'hexagon', top: '18%', left: '45%', size: 40, delay: 1.4, color: 'purple-pink' },
+    { type: 'hexagon', bottom: '20%', left: '35%', size: 36, delay: 2.9, color: 'cyan-teal' },
+    { type: 'hexagon', top: '65%', right: '30%', size: 44, delay: 0.8, color: 'yellow-orange' },
+    { type: 'star', top: '30%', right: '18%', size: 38, delay: 2.6, color: 'indigo-purple' },
+    { type: 'star', bottom: '60%', left: '40%', size: 42, delay: 1.1, color: 'red-rose' },
+    { type: 'star', top: '50%', left: '60%', size: 35, delay: 3.7, color: 'emerald-green' }
   ];
 
   const getColorClasses = (color, type) => {
@@ -346,6 +363,46 @@ const AnimatedBackground = () => {
                 filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
                 transform: 'translate3d(0,0,0)',
                 animation: isLoaded ? `floatTriangleOptimized ${8 + element.delay}s infinite ease-in-out ${element.delay}s` : 'none',
+                willChange: 'transform'
+              }}
+            />
+          );
+        }
+        
+        if (element.type === 'hexagon') {
+          return (
+            <div
+              key={`hexagon-${index}`}
+              className={`${baseClasses} hover:shadow-2xl hover:scale-110 hover:rotate-12 ${getColorClasses(element.color)} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                ...positionStyle,
+                width: `${element.size}px`,
+                height: `${element.size}px`,
+                clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+                WebkitClipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
+                transform: 'translate3d(0,0,0)',
+                animation: isLoaded ? `floatRandomSquareOptimized ${9 + element.delay}s infinite ease-in-out ${element.delay}s` : 'none',
+                willChange: 'transform'
+              }}
+            />
+          );
+        }
+        
+        if (element.type === 'star') {
+          return (
+            <div
+              key={`star-${index}`}
+              className={`${baseClasses} hover:shadow-2xl hover:scale-110 hover:rotate-45 ${getColorClasses(element.color)} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                ...positionStyle,
+                width: `${element.size}px`,
+                height: `${element.size}px`,
+                clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+                WebkitClipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
+                transform: 'translate3d(0,0,0)',
+                animation: isLoaded ? `floatTriangleOptimized ${7 + element.delay}s infinite ease-in-out ${element.delay}s` : 'none',
                 willChange: 'transform'
               }}
             />

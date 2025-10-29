@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "./components/NavBar";
 import Hero from "./sections/Hero";
-import ShowcaseSection from "./sections/ShowcaseSection";
-import Technologies from "./sections/skills";
-import Blog from "./sections/Blog";
-import Contact from "./sections/Contact";
-import Footer from "./sections/Footer";
-import SmoothScroll from "./components/SmoothScroll";
-import AnimatedBackground from "./components/AnimatedBackground";
 import LoadingScreen from "./components/LoadingScreen";
-import FloatingContactButton from "./components/FloatingContactButton";
+
+// Lazy load heavy components to reduce initial bundle size
+const ShowcaseSection = lazy(() => import("./sections/ShowcaseSection"));
+const Technologies = lazy(() => import("./sections/skills"));
+const Blog = lazy(() => import("./sections/Blog"));
+const Contact = lazy(() => import("./sections/Contact"));
+const Footer = lazy(() => import("./sections/Footer"));
+const SmoothScroll = lazy(() => import("./components/SmoothScroll"));
+const AnimatedBackground = lazy(() => import("./components/AnimatedBackground"));
+const FloatingContactButton = lazy(() => import("./components/FloatingContactButton"));
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,17 +27,33 @@ const App = () => {
         <LoadingScreen onComplete={handleLoadingComplete} />
       ) : (
         <div className="min-h-screen text-gray-900 dark:text-white relative layout-stable theme-stable">
-          <AnimatedBackground />
+          <Suspense fallback={<div className="fixed inset-0 bg-black/20 backdrop-blur-sm" />}>
+            <AnimatedBackground />
+          </Suspense>
           <div className="relative z-10 no-layout-shift">
-            <SmoothScroll />
+            <Suspense fallback={<div className="h-2 bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse" />}>
+              <SmoothScroll />
+            </Suspense>
             <Navbar />
             <Hero />
-            <ShowcaseSection />
-            <Technologies />
-            <Blog />
-            <Contact />
-            <Footer />
-            <FloatingContactButton />
+            <Suspense fallback={<div className="h-96 bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg mx-5 md:mx-20" />}>
+              <ShowcaseSection />
+            </Suspense>
+            <Suspense fallback={<div className="h-96 bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg mx-5 md:mx-20 mt-20" />}>
+              <Technologies />
+            </Suspense>
+            <Suspense fallback={<div className="h-96 bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg mx-5 md:mx-20 mt-20" />}>
+              <Blog />
+            </Suspense>
+            <Suspense fallback={<div className="h-96 bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg mx-5 md:mx-20 mt-20" />}>
+              <Contact />
+            </Suspense>
+            <Suspense fallback={<div className="h-20 bg-gray-100 dark:bg-gray-800 animate-pulse" />}>
+              <Footer />
+            </Suspense>
+            <Suspense fallback={null}>
+              <FloatingContactButton />
+            </Suspense>
           </div>
         </div>
       )}

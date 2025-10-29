@@ -38,19 +38,14 @@ const Hero = () => {
       id="hero"
       className="relative overflow-hidden bg-transparent"
     >
-      <div className="absolute top-0 left-0 z-10 w-full h-full">
-        <img 
-          src="/images/bg.png" 
-          alt="" 
-          className="w-full h-full object-cover"
-          loading="eager"
-          decoding="async"
-          style={{ 
-            aspectRatio: '16/9',
-            maxWidth: '100%',
-            height: 'auto'
-          }}
-        />
+      {/* Geometric background shapes */}
+      <div className="absolute inset-0 z-10 overflow-hidden">
+        <div className="absolute top-10 left-10 w-20 h-20 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-xl"></div>
+        <div className="absolute top-32 right-20 w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rotate-45 blur-lg"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-32 right-16 w-18 h-18 bg-gradient-to-br from-green-500/20 to-cyan-500/20 rotate-12 blur-lg"></div>
+        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-full blur-md"></div>
+        <div className="absolute top-1/3 right-1/3 w-14 h-14 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rotate-45 blur-md"></div>
       </div>
 
       <div className="relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] grid xl:grid-cols-2 grid-cols-1 gap-8 items-center px-5 md:px-20">
