@@ -1,13 +1,30 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { lazy, Suspense, useState, useEffect } from "react";
 
 import Button from "../components/Button";
 import { words, heroStats } from "../constants";
-import HeroExperience from "../components/models/hero_models/HeroExperience";
 import { useTheme } from "../contexts/ThemeContext";
+import { shouldLoadHeavyAssets } from "../utils/deviceCapabilities";
+
+// Lazy load the 3D experience to reduce initial bundle
+const HeroExperience = lazy(() => import("../components/models/hero_models/HeroExperience"));
 
 const Hero = () => {
   const { isDark } = useTheme();
+  const [shouldLoad3D, setShouldLoad3D] = useState(false);
+
+  useEffect(() => {
+    // Check device capabilities and load 3D model conditionally
+    try {
+      const canLoad3D = shouldLoadHeavyAssets();
+      setShouldLoad3D(canLoad3D);
+    } catch (error) {
+      console.error('Error checking device capabilities:', error);
+      // Fallback to not loading 3D on error
+      setShouldLoad3D(false);
+    }
+  }, []);
   useGSAP(() => {
     gsap.fromTo(
       ".hero-text h1",
@@ -135,7 +152,36 @@ const Hero = () => {
 
         {/* RIGHT: 3D Model or Visual */}
         <figure className="flex items-center justify-center xl:h-[60vh] h-[40vh]">
-          <HeroExperience />
+          {shouldLoad3D ? (
+            <Suspense fallback={
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="relative">
+                  <div className="w-32 h-32 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                      Loading 3D...
+                    </span>
+                  </div>
+                </div>
+              </div>
+            }>
+              <HeroExperience />
+            </Suspense>
+          ) : (
+            // Fallback visual for low-performance devices
+            <div className="w-full h-full flex items-center justify-center relative">
+              <div className="relative w-64 h-64">
+                <div className={`absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 animate-pulse`}></div>
+                <div className={`absolute inset-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-blue-500/30 animate-pulse delay-75`}></div>
+                <div className={`absolute inset-8 rounded-full bg-gradient-to-br from-purple-500/40 to-pink-500/40 animate-pulse delay-150`}></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    🚀
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </figure>
       </div>
 
@@ -152,13 +198,15 @@ const Hero = () => {
               }`}
             >
               <div className="relative z-10">
-                <h3
+                <div
                   className={`text-2xl md:text-3xl font-bold mb-2 ${
                     isDark ? "text-white" : "text-gray-800"
                   }`}
+                  role="text"
+                  aria-label={`${stat.value} ${stat.label}`}
                 >
                   {stat.value}
-                </h3>
+                </div>
                 <p
                   className={`text-xs md:text-sm font-medium tracking-wider ${
                     isDark ? "text-gray-300" : "text-gray-600"

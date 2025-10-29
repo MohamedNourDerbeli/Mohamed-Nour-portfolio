@@ -32,8 +32,8 @@ const NavBar = () => {
           {/* Left side - Portfolio title and name */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">MN</span>
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-sm drop-shadow-sm">MN</span>
               </div>
               <div>
                 <h1 className={`font-semibold text-lg ${
@@ -118,10 +118,10 @@ const NavBar = () => {
             <ThemeToggle />
             <a
               href="#contact"
-              className={`px-6 py-2 rounded-lg transition-all duration-300 text-sm font-medium ${
+              className={`px-6 py-2 rounded-lg transition-all duration-300 text-sm font-medium shadow-lg ${
                 isDark
-                  ? "bg-blue-500 hover:bg-blue-600 text-white"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
+                  ? "bg-blue-700 hover:bg-blue-800 text-white border border-blue-600"
+                  : "bg-blue-700 hover:bg-blue-800 text-white border border-blue-600"
               }`}
             >
               Contact Me

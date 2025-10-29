@@ -7,7 +7,7 @@ import React, { useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
-import * as THREE from "three";
+import { MeshStandardMaterial, MeshPhongMaterial, DoubleSide } from "three";
 
 export function Room({ isDark, ...props }) {
   const { nodes, materials } = useGLTF("/models/optimized-room.glb");
@@ -15,32 +15,32 @@ export function Room({ isDark, ...props }) {
   const matcapTexture = useTexture("/images/textures/mat1.png");
 
   // Theme-aware materials
-  const curtainMaterial = new THREE.MeshPhongMaterial({
+  const curtainMaterial = new MeshPhongMaterial({
     color: isDark ? "#d90429" : "#ff6b6b", // Brighter red for light mode
   });
 
-  const bodyMaterial = new THREE.MeshPhongMaterial({
+  const bodyMaterial = new MeshPhongMaterial({
     map: matcapTexture,
     color: isDark ? "#ffffff" : "#f8f9fa", // Slightly brighter for light mode
   });
 
-  const tableMaterial = new THREE.MeshPhongMaterial({
+  const tableMaterial = new MeshPhongMaterial({
     color: isDark ? "#582f0e" : "#8b4513", // Lighter brown for light mode
   });
 
-  const radiatorMaterial = new THREE.MeshPhongMaterial({
+  const radiatorMaterial = new MeshPhongMaterial({
     color: isDark ? "#fff" : "#f5f5f5", // Slightly off-white for light mode
   });
 
-  const compMaterial = new THREE.MeshStandardMaterial({
+  const compMaterial = new MeshStandardMaterial({
     color: isDark ? "#fff" : "#e9ecef", // Light gray for light mode
   });
 
-  const pillowMaterial = new THREE.MeshPhongMaterial({
+  const pillowMaterial = new MeshPhongMaterial({
     color: isDark ? "#8338ec" : "#a855f7", // Brighter purple for light mode
   });
 
-  const chairMaterial = new THREE.MeshPhongMaterial({
+  const chairMaterial = new MeshPhongMaterial({
     color: isDark ? "#000" : "#343a40", // Dark gray instead of black for light mode
   });
 

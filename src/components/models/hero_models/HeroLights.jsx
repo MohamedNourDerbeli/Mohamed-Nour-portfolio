@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import { DirectionalLight, AmbientLight, PointLight, RectAreaLight } from "three";
 
 const HeroLights = ({ isDark }) => (
   <>
@@ -33,7 +33,7 @@ const HeroLights = ({ isDark }) => (
     
     {/* Area light - smaller and more focused */}
     <primitive
-      object={new THREE.RectAreaLight(
+      object={new RectAreaLight(
         isDark ? "#a259ff" : "#ffffff", 
         isDark ? 8 : 12, 
         2, 

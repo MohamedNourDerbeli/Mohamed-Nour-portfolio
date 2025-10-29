@@ -14,6 +14,9 @@ export default defineConfig({
           three: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
           gsap: ['gsap', '@gsap/react']
         }
+      },
+      treeshake: {
+        moduleSideEffects: false
       }
     },
     chunkSizeWarningLimit: 1000
