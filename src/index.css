@@ -2217,16 +2217,3 @@ img {
   transition: background-color 0.3s ease, color 0.3s ease;
   will-change: background-color, color;
 }/* 
-Floating Contact Button Fix */
-.floating-contact-button {
-  position: fixed !important;
-  bottom: 1.5rem !important;
-  right: 1.5rem !important;
-  z-index: 9999 !important;
-  pointer-events: auto !important;
-}
-
-/* Ensure it's not affected by any container styles */
-.floating-contact-button * {
-  pointer-events: auto !important;
-}

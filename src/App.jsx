@@ -12,7 +12,7 @@ const Contact = lazy(() => import("./sections/Contact"));
 const Footer = lazy(() => import("./sections/Footer"));
 const SmoothScroll = lazy(() => import("./components/SmoothScroll"));
 const AnimatedBackground = lazy(() => import("./components/AnimatedBackground"));
-const FloatingContactButton = lazy(() => import("./components/FloatingContactButton"));
+
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -51,9 +51,7 @@ const App = () => {
             <Suspense fallback={<div className="h-20 bg-gray-100 dark:bg-gray-800 animate-pulse" />}>
               <Footer />
             </Suspense>
-            <Suspense fallback={null}>
-              <FloatingContactButton />
-            </Suspense>
+
           </div>
         </div>
       )}
