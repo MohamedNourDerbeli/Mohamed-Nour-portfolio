@@ -30,5 +30,7 @@ export const getDeviceCapabilities = () => {
 
 export const shouldLoadHeavyAssets = () => {
   const capabilities = getDeviceCapabilities();
+  console.log('Device capabilities:', capabilities);
+  console.log('Should load 3D:', capabilities.shouldLoad3D);
   return capabilities.shouldLoad3D;
 };

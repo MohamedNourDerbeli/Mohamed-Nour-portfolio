@@ -18,11 +18,18 @@ const Hero = () => {
     // Check device capabilities and load 3D model conditionally
     try {
       const canLoad3D = shouldLoadHeavyAssets();
-      setShouldLoad3D(canLoad3D);
+      console.log('Device capabilities check:', canLoad3D);
+      
+      // Temporary override to always show 3D for testing
+      // Remove this line in production
+      setShouldLoad3D(true);
+      
+      // Use this for production:
+      // setShouldLoad3D(canLoad3D);
     } catch (error) {
       console.error('Error checking device capabilities:', error);
-      // Fallback to not loading 3D on error
-      setShouldLoad3D(false);
+      // Fallback to loading 3D on error for now
+      setShouldLoad3D(true);
     }
   }, []);
   useGSAP(() => {
