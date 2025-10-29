@@ -231,14 +231,32 @@ const AppShowcase = () => {
                         }`}
                       ></div>
 
-                      {/* Floating project info */}
+                      {/* Floating project info with better structure */}
                       <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-white text-xl font-bold mb-2 drop-shadow-lg">
+                        <h3 className="text-white text-xl font-bold mb-3 drop-shadow-lg">
                           {project.title}
                         </h3>
-                        <p className="text-gray-200 text-sm leading-relaxed drop-shadow-md line-clamp-2">
-                          {project.description}
-                        </p>
+                        
+                        {/* Key features as bullet points */}
+                        <div className="space-y-1 mb-2">
+                          {project.keyFeatures?.slice(0, 2).map((feature, idx) => (
+                            <div key={idx} className="flex items-center gap-2 text-gray-200 text-xs">
+                              <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0"></div>
+                              <span className="drop-shadow-md">{feature}</span>
+                            </div>
+                          )) || (
+                            <p className="text-gray-200 text-sm leading-relaxed drop-shadow-md line-clamp-2">
+                              {project.description}
+                            </p>
+                          )}
+                        </div>
+                        
+                        {/* Project type indicator */}
+                        <div className="flex items-center gap-2 mt-2">
+                          <span className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white font-medium">
+                            {project.category || "Web App"}
+                          </span>
+                        </div>
                       </div>
                     </div>
 

@@ -91,6 +91,12 @@ const projects = [
     image: "/images/project1.webp",
     technologies: ["Bash", "Wazuh", "Python", "Sysmon"],
     githubUrl: "https://github.com/MohamedNourDerbeli/SOC-SIEM",
+    category: "Security Operations",
+    keyFeatures: [
+      "Automated threat detection",
+      "Real-time monitoring dashboard",
+      "Custom alert rules",
+    ],
     featured: true,
   },
   {
@@ -101,6 +107,12 @@ const projects = [
     image: "/images/project2.jpeg",
     technologies: ["Polkadot", "Solidity", "Hardhat", "React", "Vite"],
     githubUrl: "https://github.com/MohamedNourDerbeli/TrustFi",
+    category: "Blockchain DApp",
+    keyFeatures: [
+      "On-chain reputation system",
+      "Cross-platform compatibility",
+      "Decentralized trust scoring",
+    ],
   },
   {
     id: 3,
@@ -110,6 +122,28 @@ const projects = [
     image: "/images/project3.jpg",
     technologies: ["Roff", "Shell", "Python"],
     githubUrl: "https://github.com/MohamedNourDerbeli/Linux-From-Scratch",
+    category: "System Engineering",
+    keyFeatures: [
+      "Automated build pipeline",
+      "Custom kernel configuration",
+      "Reproducible system builds",
+    ],
+  },
+  {
+    id: 4,
+    title: "Hacker News Alert Slackbot",
+    description:
+      "Automated Slack bot delivering curated Hacker News stories to your team.",
+    image: "/images/project4.png",
+    technologies: ["Python", "Slack API", "Hacker News API"],
+    githubUrl:
+      "https://github.com/MohamedNourDerbeli/Hacker-News-Alert-Slackbot",
+    category: "Automation Bot",
+    keyFeatures: [
+      "Real-time story fetching",
+      "Customizable alert filters",
+      "Team collaboration integration",
+    ],
   },
 ];
 
@@ -371,7 +405,7 @@ const funMessages = [
   "🎪 The demo circus is setting up! Come back soon!",
   "🌟 This demo is still charging its superpowers!",
   "🎮 Achievement locked: Demo still in development mode!",
-  "🍕 Demo is in the oven! Please wait while it bakes to perfection!"
+  "🍕 Demo is in the oven! Please wait while it bakes to perfection!",
 ];
 
 export {

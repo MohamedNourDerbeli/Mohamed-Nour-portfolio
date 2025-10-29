@@ -267,13 +267,26 @@ const Contact = () => {
                     {method.value}
                   </div>
 
-                  <p
-                    className={`text-sm leading-relaxed ${
-                      isDark ? "text-gray-300" : "text-gray-600"
-                    }`}
-                  >
-                    {method.description}
-                  </p>
+                  {/* Chunked description with visual elements */}
+                  <div className={`text-sm space-y-2 ${
+                    isDark ? "text-gray-300" : "text-gray-600"
+                  }`}>
+                    <p className="leading-relaxed">
+                      {method.description}
+                    </p>
+                    
+                    {/* Visual indicators */}
+                    <div className="flex items-center gap-4 mt-3">
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-xs font-medium">Active</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span className="text-xs font-medium">Fast Response</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Hover Effect Border */}

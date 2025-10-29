@@ -146,13 +146,30 @@ const Blog = () => {
                       {articles[0].title}
                     </h3>
 
-                    <p
-                      className={`mb-6 leading-relaxed ${
-                        isDark ? "text-gray-300" : "text-gray-600"
-                      }`}
-                    >
-                      {articles[0].excerpt}
-                    </p>
+                    {/* Key Points */}
+                    <div className={`mb-6 space-y-3 ${
+                      isDark ? "text-gray-300" : "text-gray-600"
+                    }`}>
+                      <p className="leading-relaxed">
+                        {articles[0].excerpt.split('.')[0]}.
+                      </p>
+                      
+                      {/* Visual bullet points for key insights */}
+                      <div className="flex flex-wrap gap-4 mt-4">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span className="text-sm font-medium">In-depth Analysis</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                          <span className="text-sm font-medium">Practical Examples</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <span className="text-sm font-medium">Security Best Practices</span>
+                        </div>
+                      </div>
+                    </div>
 
                     <div className="flex flex-wrap gap-2 mb-6">
                       {articles[0].tags.map((tag, index) => (
@@ -288,13 +305,26 @@ const Blog = () => {
                         {article.title}
                       </h4>
 
-                      <p
-                        className={`text-sm mb-4 line-clamp-3 leading-relaxed ${
-                          isDark ? "text-gray-300" : "text-gray-600"
-                        }`}
-                      >
-                        {article.excerpt}
-                      </p>
+                      {/* Chunked content for better scanning */}
+                      <div className={`text-sm mb-4 space-y-2 ${
+                        isDark ? "text-gray-300" : "text-gray-600"
+                      }`}>
+                        <p className="line-clamp-2 leading-relaxed">
+                          {article.excerpt.split('.')[0]}.
+                        </p>
+                        
+                        {/* Quick highlights */}
+                        <div className="flex items-center gap-3 text-xs">
+                          <span className="flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
+                            Technical Deep-dive
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+                            Code Examples
+                          </span>
+                        </div>
+                      </div>
 
                       <div className="flex flex-wrap gap-1 mb-4">
                         {article.tags.slice(0, 3).map((tag, index) => (

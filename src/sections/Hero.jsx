@@ -90,12 +90,39 @@ const Hero = () => {
               "features."
             </p>
 
+            {/* Enhanced CTA Hierarchy */}
             <div className="flex flex-col sm:flex-row gap-4 items-start">
+              {/* Primary CTA */}
               <Button
                 text="See My Projects"
-                className="md:w-80 md:h-16 w-60 h-12"
+                className="md:w-80 md:h-16 w-60 h-12 primary-cta"
                 id="projects"
               />
+              
+              {/* Secondary CTA */}
+              <a
+                href="#contact"
+                className={`group flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 rounded-lg border-2 transition-all duration-300 hover:scale-105 ${
+                  isDark
+                    ? "border-gray-600 text-gray-300 hover:border-blue-400 hover:text-blue-400 hover:bg-blue-400/10"
+                    : "border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50"
+                }`}
+              >
+                <span className="font-medium">Let's Connect</span>
+                <svg 
+                  className="w-4 h-4 transition-transform group-hover:translate-x-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M17 8l4 4m0 0l-4 4m4-4H3" 
+                  />
+                </svg>
+              </a>
             </div>
           </div>
         </header>

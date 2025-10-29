@@ -10,6 +10,7 @@ import Footer from "./sections/Footer";
 import SmoothScroll from "./components/SmoothScroll";
 import AnimatedBackground from "./components/AnimatedBackground";
 import LoadingScreen from "./components/LoadingScreen";
+import FloatingContactButton from "./components/FloatingContactButton";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,6 +35,7 @@ const App = () => {
             <Blog />
             <Contact />
             <Footer />
+            <FloatingContactButton />
           </div>
         </div>
       )}
