@@ -78,7 +78,7 @@ const AppShowcase = () => {
         {/* Projects Grid */}
         <div className="mt-20 relative min-h-screen">
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 relative z-10">
             {isLoading ? (
               Array.from({ length: 4 }).map((_, index) => (
                 <SkeletonCard key={index} />
